@@ -8,8 +8,6 @@ public class Saab95 extends Car{
         super(2, Color.red, 125, "Saab95");
 	    turboOn = false;
     }
-    
-
 
     public void setTurboOn(){
 	    turboOn = true;
@@ -26,20 +24,13 @@ public class Saab95 extends Car{
     }
 
     public void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+        //super.setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
+        super.setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
     }
 
     public void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
-    }
-    
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
+        //super.setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
+        super.setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
     }
 
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
-    }
 }
