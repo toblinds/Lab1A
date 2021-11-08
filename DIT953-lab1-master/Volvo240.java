@@ -9,14 +9,15 @@ public class Volvo240 extends Car{
     }
 
     //Hur kan vi komma åt speedFactor från Car? Kan slippa duplicerad kod och sätta fler metoder som privata.
+    @Override
     public double speedFactor(){
         return super.getEnginePower() * 0.01 * trimFactor;
     }
 
-    public void incrementSpeed(double amount){
+    /*public void incrementSpeed(double amount){
         super.setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
     }
-
+*/
     public void decrementSpeed(double amount){
         super.setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
     }

@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Car implements Movable {
+public abstract class Car implements Movable {
 
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
@@ -97,6 +97,12 @@ public class Car implements Movable {
             currentDirection = "NORTH";
         else
             throw new RuntimeException("Unclear direction");
+    }
+    public abstract double speedFactor();
+
+    public void incrementSpeed(double amount){
+        //super.setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
+        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
     }
 
 }

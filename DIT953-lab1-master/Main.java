@@ -18,6 +18,12 @@ public class Main {
         v.move();
         System.out.println(v.getY());
         System.out.println(v.getX());
+        System.out.println(v.getCurrentSpeed());
+        v.incrementSpeed(0.5);
+        System.out.println(v.getCurrentSpeed());
+        System.out.println(w.getCurrentSpeed());
+        w.incrementSpeed(0.5);
+        System.out.println(w.getCurrentSpeed());
 
     }
 
