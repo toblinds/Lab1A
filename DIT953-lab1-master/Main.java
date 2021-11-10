@@ -1,5 +1,4 @@
 public class Main {
-//Ska vi kunna köra båda bilarna samtidigt eller räcker det med att man kör en av dem i taget?
 // Synlighet på metoder osv. private?
     public static void main(String[]args){
 
@@ -19,10 +18,10 @@ public class Main {
         System.out.println(v.getY());
         System.out.println(v.getX());
         System.out.println(v.getCurrentSpeed());
-        v.incrementSpeed(0.5);
+        //v.incrementSpeed(0.5);
         System.out.println(v.getCurrentSpeed());
         System.out.println(w.getCurrentSpeed());
-        w.incrementSpeed(0.5);
+        //w.incrementSpeed(0.5);
         System.out.println(w.getCurrentSpeed());
 
     }

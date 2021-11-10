@@ -17,7 +17,7 @@ public class Volvo240 extends Car{
     /*public void incrementSpeed(double amount){
         super.setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
     }
-*/
+
     public void decrementSpeed(double amount){
         super.setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
     }
@@ -35,4 +35,5 @@ public class Volvo240 extends Car{
             decrementSpeed(amount);
         else{throw new RuntimeException("Value is not in break interval");}
     }
+    */
 }

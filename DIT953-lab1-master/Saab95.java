@@ -27,10 +27,10 @@ public class Saab95 extends Car{
         //super.setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
         super.setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
     }
-*/
+
     public void decrementSpeed(double amount){
         //super.setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
         super.setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
     }
-
+*/
 }

@@ -43,13 +43,13 @@ public abstract class Car implements Movable {
         color = clr;
     }
 
-    public void setCurrentSpeed(double speed){ this.currentSpeed = speed; }
+    private void setCurrentSpeed(double speed){ this.currentSpeed = speed; }
 
-    public void startEngine(){
+    private void startEngine(){
         currentSpeed = 0.1;
     }
 
-    public void stopEngine(){
+    private void stopEngine(){
         currentSpeed = 0;
     }
 
@@ -98,11 +98,27 @@ public abstract class Car implements Movable {
         else
             throw new RuntimeException("Unclear direction");
     }
+    //Abstract metod för att kunna Overridea i Volvo- och Saab-klasserna.
     public abstract double speedFactor();
 
-    public void incrementSpeed(double amount){
-        //super.setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
+    private void incrementSpeed(double amount){
         setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
+    }
+
+    private void decrementSpeed(double amount){
+        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
+    }
+
+    public void gas(double amount){
+        if(amount >= 0 && amount <= 1)
+            incrementSpeed(amount);
+        else{throw new RuntimeException("Value is not in gas interval");}
+    }
+
+    public void brake(double amount){
+        if(amount >= 0 && amount <= 1)
+            decrementSpeed(amount);
+        else{throw new RuntimeException("Value is not in break interval");}
     }
 
 }
