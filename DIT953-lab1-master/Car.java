@@ -96,6 +96,14 @@ public abstract class Car implements Movable {
     }
 
     /**
+     * Getter for the direction of the car
+     * @return The current direction of the car
+     */
+    public String getCurrentDirection(){
+        return currentDirection;
+    }
+
+    /**
      * Setter for the car's speed
      * @param speed Set the car's currentSpeed to chosen speed
      */

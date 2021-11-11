@@ -16,7 +16,6 @@ public class Saab95 extends Car{
     }
     /**
      * Method to turn turbo on for Saab cars
-     * @return nothing
      */
     public void setTurboOn(){
 	    turboOn = true;
@@ -24,7 +23,6 @@ public class Saab95 extends Car{
 
     /**
      * Method to turn turbo off for Saab cars
-     * @return nothing
      */
     public void setTurboOff(){
 	    turboOn = false;
