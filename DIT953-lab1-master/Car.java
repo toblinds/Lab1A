@@ -33,7 +33,17 @@ public abstract class Car implements Movable {
     /**
      * The direction of the car
      */
-    private String currentDirection;
+    private Direction currentDirection;
+
+    /**
+     * Enum list of possible directions
+     */
+    enum Direction{
+        NORTH,
+        SOUTH,
+        WEST,
+        EAST
+    }
 
     /**
      * Constructor for Car
@@ -47,7 +57,7 @@ public abstract class Car implements Movable {
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
-        this.currentDirection = "NORTH";
+        this.currentDirection = Direction.NORTH;
         this.stopEngine();
     }
 
@@ -99,7 +109,7 @@ public abstract class Car implements Movable {
      * Getter for the direction of the car
      * @return The current direction of the car
      */
-    public String getCurrentDirection(){
+    public Direction getCurrentDirection(){
         return currentDirection;
     }
 
@@ -114,13 +124,13 @@ public abstract class Car implements Movable {
     /**
      * Starts the car's engine
      */
-    private void startEngine(){
+    public void startEngine(){
         currentSpeed = 0.1;
     }
     /**
      * Stops the car's engine
      */
-    private void stopEngine(){
+    public void stopEngine(){
         currentSpeed = 0;
     }
     /**
@@ -136,13 +146,13 @@ public abstract class Car implements Movable {
      */
     @Override
     public void move() {
-        if(currentDirection.equals("NORTH"))
+        if(currentDirection == Direction.NORTH)
             y -= currentSpeed;
-        else if(currentDirection.equals("SOUTH"))
+        else if(currentDirection == Direction.SOUTH)
             y += currentSpeed;
-        else if(currentDirection.equals("EAST"))
+        else if(currentDirection == Direction.EAST)
             x += currentSpeed;
-        else if(currentDirection.equals("WEST"))
+        else if(currentDirection == Direction.WEST)
             x -= currentSpeed;
     }
 
@@ -151,14 +161,14 @@ public abstract class Car implements Movable {
      */
     @Override
     public void turnLeft() {
-        if(currentDirection.equals("NORTH"))
-            currentDirection = "WEST";
-        else if(currentDirection.equals("SOUTH"))
-            currentDirection = "EAST";
-        else if(currentDirection.equals("EAST"))
-            currentDirection = "NORTH";
-        else if(currentDirection.equals("WEST"))
-            currentDirection = "SOUTH";
+        if(currentDirection == Direction.NORTH)
+            currentDirection = Direction.WEST;
+        else if(currentDirection == Direction.SOUTH)
+            currentDirection = Direction.EAST;
+        else if(currentDirection == Direction.EAST)
+            currentDirection = Direction.NORTH;
+        else if(currentDirection == Direction.WEST)
+            currentDirection = Direction.SOUTH;
     }
 
     /**
@@ -166,14 +176,14 @@ public abstract class Car implements Movable {
      */
     @Override
     public void turnRight() {
-        if(currentDirection.equals("NORTH"))
-            currentDirection = "EAST";
-        else if(currentDirection.equals("SOUTH"))
-            currentDirection = "WEST";
-        else if(currentDirection.equals("EAST"))
-            currentDirection = "SOUTH";
-        else if(currentDirection.equals("WEST"))
-            currentDirection = "NORTH";
+        if(currentDirection == Direction.NORTH)
+            currentDirection = Direction.EAST;
+        else if(currentDirection == Direction.SOUTH)
+            currentDirection = Direction.WEST;
+        else if(currentDirection == Direction.EAST)
+            currentDirection = Direction.SOUTH;
+        else if(currentDirection == Direction.WEST)
+            currentDirection = Direction.NORTH;
     }
 
     /**
@@ -203,9 +213,6 @@ public abstract class Car implements Movable {
      * @param amount the amount of gas given
      */
     public void gas(double amount){
-        if(currentSpeed == 0){
-        startEngine();
-    }
         if(amount >= 0 && amount <= 1)
             incrementSpeed(amount);
         else{throw new RuntimeException("Value is not in gas interval");}
@@ -219,9 +226,6 @@ public abstract class Car implements Movable {
         if(amount >= 0 && amount <= 1)
             decrementSpeed(amount);
         else{throw new RuntimeException("Value is not in break interval");}
-        if(currentSpeed==0){
-            stopEngine();
-        }
     }
 
 }

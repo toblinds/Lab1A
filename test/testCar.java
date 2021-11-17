@@ -10,16 +10,24 @@ public class testCar {
     Saab95 saab = new Saab95();
 
     @Test
+    public void testEngine(){
+        volvo.startEngine();
+        assertTrue(volvo.getCurrentSpeed() == 0.1);
+        volvo.stopEngine();
+        assertTrue(volvo.getCurrentSpeed() == 0);
+    }
+    @Test (expected = RuntimeException.class)
     public void testGas(){
         volvo.gas(0.5);
+        assertTrue(volvo.getCurrentSpeed() == 0.625);
         volvo.gas(2);
-        assertTrue(volvo.getCurrentSpeed()==0.725);
     }
-    @Test
+    @Test (expected = RuntimeException.class)
     public void testBrake(){
+        volvo.gas(1);
         volvo.brake(0.5);
+        assertTrue(volvo.getCurrentSpeed() == 0.625);
         volvo.brake(2);
-        assertTrue(volvo.getCurrentSpeed() == 0);
     }
     @Test
     public void testMove(){
@@ -32,27 +40,33 @@ public class testCar {
         volvo.move();
         volvo.gas(0.5);
         volvo.move();
-        assertTrue(volvo.getX() == 0.725);
+        assertTrue(volvo.getX() == 0.625);
     }
     @Test
     public void testTurnLeft(){
         volvo.turnLeft();
+        assertTrue(volvo.getCurrentDirection() == Car.Direction.NORTH);
         volvo.turnLeft();
+        assertTrue(volvo.getCurrentDirection() == Car.Direction.WEST);
         volvo.turnLeft();
+        assertTrue(volvo.getCurrentDirection() == Car.Direction.SOUTH);
         volvo.turnLeft();
-        assertTrue(volvo.getCurrentDirection() == "NORTH");
+        assertTrue(volvo.getCurrentDirection() == Car.Direction.EAST);
     }
     @Test
     public void testTurnRight(){
         volvo.turnRight();
+        assertTrue(volvo.getCurrentDirection() == Car.Direction.EAST);
         volvo.turnRight();
+        assertTrue(volvo.getCurrentDirection() == Car.Direction.SOUTH);
         volvo.turnRight();
+        assertTrue(volvo.getCurrentDirection() == Car.Direction.WEST);
         volvo.turnRight();
-        assertTrue(volvo.getCurrentDirection() == "NORTH");
+        assertTrue(volvo.getCurrentDirection() == Car.Direction.NORTH);
     }
     @Test
     public void testGetModelName(){
-        assertTrue(volvo.getModelName() == "Volvo240");
+        assertTrue(volvo.getModelName().equals("Volvo240"));
     }
     @Test
     public void testGetColor(){
@@ -62,14 +76,14 @@ public class testCar {
     public void testGetY(){
         volvo.gas(0.5);
         volvo.move();
-        assertTrue(volvo.getY() == -0.725);
+        assertTrue(volvo.getY() == -0.625);
     }
     @Test
     public void testGetX(){
         volvo.gas(0.5);
         volvo.turnRight();
         volvo.move();
-        assertTrue(volvo.getX() == 0.725);
+        assertTrue(volvo.getX() == 0.625);
     }
     @Test
     public void testGetNrDoors(){
